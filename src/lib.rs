@@ -89,8 +89,8 @@ impl TypeMap {
     /// Get the given key's corresponding entry in the map for in-place manipulation.
     pub fn entry<'a, K: Assoc<V>, V: 'static>(&'a mut self) -> Entry<'a, K, V> {
         match self.data.entry(TypeId::of::<K>()) {
-            hash_map::Occupied(e) => Occupied(OccupiedEntry { data: e }),
-            hash_map::Vacant(e) => Vacant(VacantEntry { data: e })
+            hash_map::Occupied(e) => Entry::Occupied(OccupiedEntry { data: e }),
+            hash_map::Vacant(e) => Entry::Vacant(VacantEntry { data: e })
         }
     }
 
